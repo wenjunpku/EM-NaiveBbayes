@@ -11,14 +11,11 @@ class EMbayes(object):
 		self.X = X
 		self.K = K
 		self.M, self.N = X.shape
-		print X.shape
 		self.maxiter = maxiter
 		self.delta =np.tile(np.array([0.0 for i in range(self.M)]),(self.K, 1))
-		print self.delta.shape
 		self.q = np.random.rand(self.K)
 		tmpsum = self.q.sum()
 		self.q = np.array([x/tmpsum for x in self.q])
-		print self.q.shape
 		self.q_old = copy.deepcopy(self.q)
 
 		#randfloat = np.random.rand(1)[0]
@@ -26,7 +23,6 @@ class EMbayes(object):
 
 		self.qj =np.array([np.random.rand(self.K), np.random.rand(self.K)])
 		self.qj = self.qj/self.qj.sum(axis = 0)
-		print self.qj.shape
 
 		#self.qjd = np.tile(self.qj,(self.N,1,1))
 		self.qjd = []
@@ -35,7 +31,6 @@ class EMbayes(object):
 			tmp = tmp/tmp.sum(axis = 0)
 			self.qjd.append(tmp)
 		self.qjd = np.array(self.qjd)
-		print self.qjd.shape
 
 
 	def _iterate(self):
