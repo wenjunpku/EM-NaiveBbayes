@@ -13,18 +13,14 @@ class EMbayes(object):
 		self.M, self.N = X.shape
 		self.maxiter = maxiter
 		self.delta =np.tile(np.array([0.0 for i in range(self.M)]),(self.K, 1))
+
 		self.q = np.random.rand(self.K)
 		tmpsum = self.q.sum()
 		self.q = np.array([x/tmpsum for x in self.q])
 		self.q_old = copy.deepcopy(self.q)
 
-		#randfloat = np.random.rand(1)[0]
-		#print randfloat
-
 		self.qj =np.array([np.random.rand(self.K), np.random.rand(self.K)])
 		self.qj = self.qj/self.qj.sum(axis = 0)
-
-		#self.qjd = np.tile(self.qj,(self.N,1,1))
 		self.qjd = []
 		for i in range(self.N):
 			tmp = np.array([np.random.rand(self.K), np.random.rand(self.K)])
@@ -41,8 +37,6 @@ class EMbayes(object):
 			for y in range(self.K):
 				tmp = 0.0
 				for j in range(self.N):
-					#print self.qjd[j][1 if self.X[i][j] == 1.0 else 0][y]
-					#tmp *= self.qjd[j][1 if self.X[i][j] == 1.0 else 0][y]
 					if(self.qjd[j][1 if self.X[i][j] == 1.0 else 0][y] < 0.0):
 						print "num1 errer"
 					if(self.qjd[j][1 if self.X[i][j] == 1.0 else 0][y] == 0.0):
