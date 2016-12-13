@@ -3,7 +3,9 @@ import pandas as  pd
 import math
 import copy
 class EMbayes(object):
-
+	'''
+	a simple class
+	'''
 	def __init__(self, epsilon):
 		self.epsilon = epsilon
 
@@ -37,10 +39,6 @@ class EMbayes(object):
 			for y in range(self.K):
 				tmp = 0.0
 				for j in range(self.N):
-					if(self.qjd[j][1 if self.X[i][j] == 1.0 else 0][y] < 0.0):
-						print "num1 errer"
-					if(self.qjd[j][1 if self.X[i][j] == 1.0 else 0][y] == 0.0):
-						print "num2 errer"
 					tmp += math.log(self.qjd[j][1 if self.X[i][j] == 1.0 else 0][y])
 				self.delta[y][i] = self.q[y] * math.exp(tmp);
 				ssum += self.delta[y][i]

@@ -1,3 +1,5 @@
+#!usr/bin/python2
+
 import numpy as np
 from EMbayes import *
 from EMnaivebayes import *
